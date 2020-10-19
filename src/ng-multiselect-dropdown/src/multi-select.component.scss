@@ -30,7 +30,38 @@ $disable-background-color: #eceeef;
         text-decoration: none;
       }
     }
+    .new-subject-item {
+      border: 1px solid $base-color;
+      margin-right: 4px;
+      background: black;
+      padding: 0px 5px;
+      color: #fff;
+      border-radius: 2px;
+      float: left;
+      a {
+        text-decoration: none;
+      }
+    }
+    .mandatory-item {
+      border: 1px solid $base-color;
+      margin-right: 4px;
+      background: black;
+      padding: 0px 5px;
+      color: #fff;
+      border-radius: 2px;
+      float: left;
+      a {
+        text-decoration: none;
+      }
+    }
     .selected-item:hover {
+      box-shadow: 1px 1px #959595;
+    }
+    .mandatory-item:hover {
+      box-shadow: 1px 1px #959595;
+    }
+
+    .new-subject-item:hover {
       box-shadow: 1px 1px #959595;
     }
     .dropdown-down {
@@ -94,7 +125,7 @@ $disable-background-color: #eceeef;
   }
 }
 
-.multiselect-item-checkbox input[type='checkbox'] {
+.multiselect-item-checkbox input[type="checkbox"] {
   border: 0;
   clip: rect(0 0 0 0);
   height: 1px;
@@ -105,17 +136,17 @@ $disable-background-color: #eceeef;
   width: 1px;
 }
 
-.multiselect-item-checkbox input[type='checkbox']:focus + div:before,
-.multiselect-item-checkbox input[type='checkbox']:hover + div:before {
+.multiselect-item-checkbox input[type="checkbox"]:focus + div:before,
+.multiselect-item-checkbox input[type="checkbox"]:hover + div:before {
   border-color: $base-color;
   background-color: #f2f2f2;
 }
 
-.multiselect-item-checkbox input[type='checkbox']:active + div:before {
+.multiselect-item-checkbox input[type="checkbox"]:active + div:before {
   transition-duration: 0s;
 }
 
-.multiselect-item-checkbox input[type='checkbox'] + div {
+.multiselect-item-checkbox input[type="checkbox"] + div {
   position: relative;
   padding-left: 2em;
   vertical-align: middle;
@@ -125,9 +156,9 @@ $disable-background-color: #eceeef;
   color: #000;
 }
 
-.multiselect-item-checkbox input[type='checkbox'] + div:before {
+.multiselect-item-checkbox input[type="checkbox"] + div:before {
   box-sizing: content-box;
-  content: '';
+  content: "";
   color: $base-color;
   position: absolute;
   top: 50%;
@@ -140,9 +171,9 @@ $disable-background-color: #eceeef;
   transition: all 0.4s ease;
 }
 
-.multiselect-item-checkbox input[type='checkbox'] + div:after {
+.multiselect-item-checkbox input[type="checkbox"] + div:after {
   box-sizing: content-box;
-  content: '';
+  content: "";
   background-color: $base-color;
   position: absolute;
   top: 50%;
@@ -155,26 +186,26 @@ $disable-background-color: #eceeef;
   transition: transform 200ms ease-out;
 }
 
-.multiselect-item-checkbox input[type='checkbox']:disabled + div:before {
+.multiselect-item-checkbox input[type="checkbox"]:disabled + div:before {
   border-color: #cccccc;
 }
 
 .multiselect-item-checkbox
-  input[type='checkbox']:disabled:focus
+  input[type="checkbox"]:disabled:focus
   + div:before
   .multiselect-item-checkbox
-  input[type='checkbox']:disabled:hover
+  input[type="checkbox"]:disabled:hover
   + div:before {
   background-color: inherit;
 }
 
 .multiselect-item-checkbox
-  input[type='checkbox']:disabled:checked
+  input[type="checkbox"]:disabled:checked
   + div:before {
   background-color: #cccccc;
 }
 
-.multiselect-item-checkbox input[type='checkbox'] + div:after {
+.multiselect-item-checkbox input[type="checkbox"] + div:after {
   background-color: transparent;
   top: 50%;
   left: 4px;
@@ -188,18 +219,18 @@ $disable-background-color: #eceeef;
   transform: rotate(-45deg) scale(0);
 }
 
-.multiselect-item-checkbox input[type='checkbox']:checked + div:after {
-  content: '';
+.multiselect-item-checkbox input[type="checkbox"]:checked + div:after {
+  content: "";
   transform: rotate(-45deg) scale(1);
   transition: transform 200ms ease-out;
 }
 
-.multiselect-item-checkbox input[type='checkbox']:checked + div:before {
+.multiselect-item-checkbox input[type="checkbox"]:checked + div:before {
   animation: borderscale 200ms ease-in;
   background: $base-color;
 }
 
-.multiselect-item-checkbox input[type='checkbox']:checked + div:after {
+.multiselect-item-checkbox input[type="checkbox"]:checked + div:after {
   transform: rotate(-45deg) scale(1);
 }
 

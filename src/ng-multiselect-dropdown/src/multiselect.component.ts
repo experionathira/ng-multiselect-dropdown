@@ -44,7 +44,8 @@ export class MultiSelectComponent implements ControlValueAccessor {
     closeDropDownOnSelection: false,
     showSelectedItemsAtTop: false,
     defaultOpen: false,
-    allowRemoteDataSearch: false
+    allowRemoteDataSearch: false,
+    property: "property"
   };
 
   @Input()
@@ -81,7 +82,8 @@ export class MultiSelectComponent implements ControlValueAccessor {
           : new ListItem({
               id: item[this._settings.idField],
               text: item[this._settings.textField],
-              isDisabled: item[this._settings.disabledField]
+              isDisabled: item[this._settings.disabledField],
+              property: item[this._settings.property]
             })
       );
     }
@@ -144,7 +146,9 @@ export class MultiSelectComponent implements ControlValueAccessor {
                 : new ListItem({
                     id: firstItem[this._settings.idField],
                     text: firstItem[this._settings.textField],
-                    isDisabled: firstItem[this._settings.disabledField]
+                    isDisabled: firstItem[this._settings.disabledField],
+                    property: firstItem[this._settings.property]
+
                   })
             ];
           }
@@ -158,7 +162,9 @@ export class MultiSelectComponent implements ControlValueAccessor {
             : new ListItem({
                 id: item[this._settings.idField],
                 text: item[this._settings.textField],
-                isDisabled: item[this._settings.disabledField]
+                isDisabled: item[this._settings.disabledField],
+                property: item[this._settings.property]
+
               })
         );
         if (this._settings.limitSelection > 0) {
@@ -278,6 +284,9 @@ export class MultiSelectComponent implements ControlValueAccessor {
       obj[this._settings.textField] = val.text;
       if (this._sourceDataFields.includes(this._settings.disabledField)) {
         obj[this._settings.disabledField] = val.isDisabled;
+      }
+      if (this._sourceDataFields.includes(this._settings.property)) {
+        obj[this._settings.property] = val.property;
       }
       return obj;
     }

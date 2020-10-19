@@ -17,22 +17,27 @@ export interface IDropdownSettings {
   showSelectedItemsAtTop?: boolean;
   defaultOpen?: boolean;
   allowRemoteDataSearch?: boolean;
+  property?: string;
 }
 
 export class ListItem {
   id: String | number;
   text: String | number;
   isDisabled?: boolean;
+  property?: String;
 
   public constructor(source: any) {
     if (typeof source === 'string' || typeof source === 'number') {
       this.id = this.text = source;
       this.isDisabled = false;
+      this.property = '';
     }
     if (typeof source === 'object') {
+      console.log('source', source)
       this.id = source.id;
       this.text = source.text;
       this.isDisabled = source.isDisabled;
+      this.property = source.property;
     }
   }
 }

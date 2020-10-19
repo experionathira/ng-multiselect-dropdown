@@ -1,8 +1,8 @@
 {
-  "name": "multiselect-dropdown-with-property",
+  "name": "@athira/ng-multiselect-dropdown",
   "version": "0.2.10",
   "description": "Angular Multi-Select Dropdown",
-  "author": "Nilesh Patel",
+  "author": "Athira",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -13,15 +13,15 @@
     "test": "jest --watch",
     "test:ci": "jest --runInBand",
     "test:coverage": "jest --coverage",
-    "build:prod": "ng build --prod --base-href https://nileshpatel17.github.io/ng-multiselect-dropdown/",
+    "build:prod": "ng build --prod --base-href https://experionathira.github.io/ng-multiselect-dropdown/",
     "clear:lib": "rimraf dist-lib",
     "copyfiles": "copyfiles -u 1 ./dist-lib/**/*.* node_modules/ng-multiselect-dropdown",
     "build:lib": "npm run clear:lib && ng-packagr -p ng-package.json",
     "postbuild:lib": "npm run copyfiles",
     "prepublish": "npm run build:prod",
-    "publish": "ngh --no-silent false --name=\"nileshpatel17\" --email=\"nilesh.nvs@hotmail.com\"",
-    "deploy": "ng build --prod --bh /ng-multiselect-dropdown/ && angular-cli-ghpages --no-silent --repo=https://github.com/NileshPatel17/ng-multiselect-dropdown.git --name=\"Nilesh Patel\" --email=nilesh.nvs@hotmail.com",
-    "deployOnly": "angular-cli-ghpages --no-silent --repo=https://github.com/NileshPatel17/ng-multiselect-dropdown.git --name=\"Nilesh Patel\" --email=nilesh.nvs@hotmail.com",
+    "publish": "ngh --no-silent false --name=\"experionathira\" --email=\"athira.s@experionglobal.com\"",
+    "deploy": "ng build --prod --bh /ng-multiselect-dropdown/ && angular-cli-ghpages --no-silent --repo=https://github.com/experionathira/ng-multiselect-dropdown.git --name=\"experionathira\" --email=athira.s@experionglobal.com",
+    "deployOnly": "angular-cli-ghpages --no-silent --repo=https://github.com/experionathira/ng-multiselect-dropdown.git --name=\"experionathira\" --email=athira.s@experionglobal.com",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate"
   },
@@ -37,12 +37,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nileshpatel17/ng-multiselect-dropdown.git"
+    "url": "git+https://github.com/experionathira/ng-multiselect-dropdown.git"
   },
   "bugs": {
-    "url": "https://github.com/nileshpatel17/ng-multiselect-dropdown/issues"
+    "url": "https://github.com/experionathira/ng-multiselect-dropdown/issues"
   },
-  "homepage": "https://github.com/nileshpatel17/ng-multiselect-dropdown#readme",
+  "homepage": "https://github.com/experionathira/ng-multiselect-dropdown#readme",
   "peerDependencies": {
     "@angular/common": ">=2.0.0",
     "@angular/core": ">=2.0.0"

@@ -1,9 +1,10 @@
 {
-  "name": "@athira/ng-multiselect-dropdown",
-  "version": "0.2.10",
+  "name": "@experionathira/ng-multiselect-dropdown",
+  "version": "1.0.2",
   "description": "Angular Multi-Select Dropdown",
   "author": "Athira",
   "license": "MIT",
+  "private": false,
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

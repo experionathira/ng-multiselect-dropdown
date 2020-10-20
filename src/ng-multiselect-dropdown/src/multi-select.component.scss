@@ -30,7 +30,7 @@ $disable-background-color: #eceeef;
         text-decoration: none;
       }
     }
-    .new-subject-item {
+    .newly-added-item {
       border: 1px solid $base-color;
       margin-right: 4px;
       background: black;
@@ -54,6 +54,7 @@ $disable-background-color: #eceeef;
         text-decoration: none;
       }
     }
+
     .selected-item:hover {
       box-shadow: 1px 1px #959595;
     }

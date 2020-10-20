@@ -33,7 +33,6 @@ export class ListItem {
       this.property = '';
     }
     if (typeof source === 'object') {
-      console.log('source', source)
       this.id = source.id;
       this.text = source.text;
       this.isDisabled = source.isDisabled;

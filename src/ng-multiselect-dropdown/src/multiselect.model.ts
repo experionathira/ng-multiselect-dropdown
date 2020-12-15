@@ -18,6 +18,7 @@ export interface IDropdownSettings {
   defaultOpen?: boolean;
   allowRemoteDataSearch?: boolean;
   property?: string;
+  placement?: string;
 }
 
 export class ListItem {

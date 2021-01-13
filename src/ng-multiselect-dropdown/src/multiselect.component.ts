@@ -46,7 +46,8 @@ export class MultiSelectComponent implements ControlValueAccessor {
     defaultOpen: false,
     allowRemoteDataSearch: false,
     property: "property",
-    placement: "bottom"
+    placement: "bottom",
+    displayOrder: 1
   };
 
   @Input()
@@ -84,7 +85,8 @@ export class MultiSelectComponent implements ControlValueAccessor {
               id: item[this._settings.idField],
               text: item[this._settings.textField],
               isDisabled: item[this._settings.disabledField],
-              property: item[this._settings.property]
+              property: item[this._settings.property],
+              displayOrder: item[this._settings.displayOrder]
             })
       );
     }
@@ -148,10 +150,13 @@ export class MultiSelectComponent implements ControlValueAccessor {
                     id: firstItem[this._settings.idField],
                     text: firstItem[this._settings.textField],
                     isDisabled: firstItem[this._settings.disabledField],
-                    property: firstItem[this._settings.property]
+                    property: firstItem[this._settings.property],
+                    displayOrder: firstItem[this._settings.displayOrder]
+
 
                   })
             ];
+            this.selectedItems.sort((a, b) => (a.displayOrder > b.displayOrder) ? 1 : -1)
           }
         } catch (e) {
           // console.error(e.body.msg);
@@ -164,14 +169,19 @@ export class MultiSelectComponent implements ControlValueAccessor {
                 id: item[this._settings.idField],
                 text: item[this._settings.textField],
                 isDisabled: item[this._settings.disabledField],
-                property: item[this._settings.property]
+                property: item[this._settings.property],
+                displayOrder: item[this._settings.displayOrder]
 
               })
         );
         if (this._settings.limitSelection > 0) {
           this.selectedItems = _data.splice(0, this._settings.limitSelection);
+          this.selectedItems.sort((a, b) => (a.displayOrder > b.displayOrder) ? 1 : -1)
+
         } else {
           this.selectedItems = _data;
+          this.selectedItems.sort((a, b) => (a.displayOrder > b.displayOrder) ? 1 : -1)
+
         }
       }
     } else {
@@ -208,6 +218,8 @@ export class MultiSelectComponent implements ControlValueAccessor {
         found = true;
       }
     });
+    this.selectedItems.sort((a, b) => (a.displayOrder > b.displayOrder) ? 1 : -1)
+
     return found;
   }
 
@@ -247,8 +259,14 @@ export class MultiSelectComponent implements ControlValueAccessor {
     if (this._settings.singleSelection) {
       this.selectedItems = [];
       this.selectedItems.push(item);
+      console.log(' this.selectedItems',  this.selectedItems);
+      
+      this.selectedItems.sort((a, b) => (a.displayOrder > b.displayOrder) ? 1 : -1);
+      console.log('before',  this.selectedItems)
     } else {
       this.selectedItems.push(item);
+      this.selectedItems.sort((a, b) => (a.displayOrder > b.displayOrder) ? 1 : -1)
+
     }
     this.onChangeCallback(this.emittedValue(this.selectedItems));
     this.onSelect.emit(this.emittedValue(item));
@@ -260,6 +278,8 @@ export class MultiSelectComponent implements ControlValueAccessor {
         this.selectedItems.splice(this.selectedItems.indexOf(item), 1);
       }
     });
+    this.selectedItems.sort((a, b) => (a.displayOrder > b.displayOrder) ? 1 : -1)
+
     this.onChangeCallback(this.emittedValue(this.selectedItems));
     this.onDeSelect.emit(this.emittedValue(itemSel));
   }
@@ -279,6 +299,8 @@ export class MultiSelectComponent implements ControlValueAccessor {
   }
 
   objectify(val: ListItem) {
+    console.log('this._sourceDataType', this._sourceDataType, val);
+    
     if (this._sourceDataType === 'object') {
       const obj = {};
       obj[this._settings.idField] = val.id;
@@ -289,6 +311,7 @@ export class MultiSelectComponent implements ControlValueAccessor {
       if (this._sourceDataFields.includes(this._settings.property)) {
         obj[this._settings.property] = val.property;
       }
+
       return obj;
     }
     if (this._sourceDataType === 'number') {
@@ -325,6 +348,8 @@ export class MultiSelectComponent implements ControlValueAccessor {
     if (!this.isAllItemsSelected()) {
       // filter out disabled item first before slicing
       this.selectedItems = this.listFilterPipe.transform(this._data,this.filter).filter(item => !item.isDisabled).slice();
+      this.selectedItems.sort((a, b) => (a.displayOrder > b.displayOrder) ? 1 : -1)
+
       this.onSelectAll.emit(this.emittedValue(this.selectedItems));
     } else {
       this.selectedItems = [];

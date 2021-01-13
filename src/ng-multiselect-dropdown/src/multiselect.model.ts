@@ -19,6 +19,7 @@ export interface IDropdownSettings {
   allowRemoteDataSearch?: boolean;
   property?: string;
   placement?: string;
+  displayOrder?: number;
 }
 
 export class ListItem {
@@ -26,18 +27,21 @@ export class ListItem {
   text: String | number;
   isDisabled?: boolean;
   property?: String;
+  displayOrder?: number;
 
   public constructor(source: any) {
     if (typeof source === 'string' || typeof source === 'number') {
       this.id = this.text = source;
       this.isDisabled = false;
       this.property = '';
+      this.displayOrder = 1;
     }
     if (typeof source === 'object') {
       this.id = source.id;
       this.text = source.text;
       this.isDisabled = source.isDisabled;
       this.property = source.property;
+      this.displayOrder = source.displayOrder;
     }
   }
 }

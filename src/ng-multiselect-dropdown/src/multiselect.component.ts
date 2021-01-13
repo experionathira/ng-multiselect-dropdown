@@ -157,8 +157,6 @@ export class MultiSelectComponent implements ControlValueAccessor {
                   })
             ];
             this.selectedItems.sort((a, b) => (a.displayOrder > b.displayOrder) ? 1 : -1)
-            console.log('calllll', this.selectedItems)
-
           }
         } catch (e) {
           // console.error(e.body.msg);
@@ -261,10 +259,7 @@ export class MultiSelectComponent implements ControlValueAccessor {
     if (this._settings.singleSelection) {
       this.selectedItems = [];
       this.selectedItems.push(item);
-      console.log(' this.selectedItems',  this.selectedItems);
-      
       this.selectedItems.sort((a, b) => (a.displayOrder > b.displayOrder) ? 1 : -1);
-      console.log('before',  this.selectedItems)
     } else {
       this.selectedItems.push(item);
       this.selectedItems.sort((a, b) => (a.displayOrder > b.displayOrder) ? 1 : -1)
@@ -301,8 +296,6 @@ export class MultiSelectComponent implements ControlValueAccessor {
   }
 
   objectify(val: ListItem) {
-    console.log('this._sourceDataType', this._sourceDataType, val);
-    
     if (this._sourceDataType === 'object') {
       const obj = {};
       obj[this._settings.idField] = val.id;

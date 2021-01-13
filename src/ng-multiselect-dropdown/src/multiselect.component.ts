@@ -47,7 +47,7 @@ export class MultiSelectComponent implements ControlValueAccessor {
     allowRemoteDataSearch: false,
     property: "property",
     placement: "bottom",
-    displayOrder: 1
+    displayOrder: "displayOrder"
   };
 
   @Input()
@@ -157,6 +157,8 @@ export class MultiSelectComponent implements ControlValueAccessor {
                   })
             ];
             this.selectedItems.sort((a, b) => (a.displayOrder > b.displayOrder) ? 1 : -1)
+            console.log('calllll', this.selectedItems)
+
           }
         } catch (e) {
           // console.error(e.body.msg);
@@ -305,14 +307,16 @@ export class MultiSelectComponent implements ControlValueAccessor {
       const obj = {};
       obj[this._settings.idField] = val.id;
       obj[this._settings.textField] = val.text;
-      obj[this._settings.displayOrder] = val.displayOrder;
+      // obj[this._settings.displayOrder] = val.displayOrder;
       if (this._sourceDataFields.includes(this._settings.disabledField)) {
         obj[this._settings.disabledField] = val.isDisabled;
       }
       if (this._sourceDataFields.includes(this._settings.property)) {
         obj[this._settings.property] = val.property;
       }
-
+      if (this._sourceDataFields.includes(this._settings.displayOrder)) {
+        obj[this._settings.displayOrder] = val.displayOrder;
+      }
       return obj;
     }
     if (this._sourceDataType === 'number') {

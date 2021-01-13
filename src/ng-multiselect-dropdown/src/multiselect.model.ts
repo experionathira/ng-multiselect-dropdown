@@ -19,7 +19,7 @@ export interface IDropdownSettings {
   allowRemoteDataSearch?: boolean;
   property?: string;
   placement?: string;
-  displayOrder?: number;
+  displayOrder?: string;
 }
 
 export class ListItem {

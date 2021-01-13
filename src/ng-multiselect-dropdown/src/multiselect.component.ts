@@ -305,6 +305,7 @@ export class MultiSelectComponent implements ControlValueAccessor {
       const obj = {};
       obj[this._settings.idField] = val.id;
       obj[this._settings.textField] = val.text;
+      obj[this._settings.displayOrder] = val.displayOrder;
       if (this._sourceDataFields.includes(this._settings.disabledField)) {
         obj[this._settings.disabledField] = val.isDisabled;
       }

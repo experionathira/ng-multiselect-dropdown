@@ -188,9 +188,9 @@ $disable-background-color: #eceeef;
   transition: transform 200ms ease-out;
 }
 
-.multiselect-item-checkbox input[type="checkbox"]:disabled + div:before {
-  border-color: $base-color;
-}
+// .multiselect-item-checkbox input[type="checkbox"]:disabled + div:before {
+//   border-color: $base-color;
+// }
 
 .multiselect-item-checkbox
   input[type="checkbox"]:disabled:focus

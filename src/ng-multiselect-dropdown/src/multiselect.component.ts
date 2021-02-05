@@ -1,4 +1,13 @@
-import { Component, HostListener, forwardRef, Input, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef } from "@angular/core";
+import {
+  Component,
+  HostListener,
+  forwardRef,
+  Input,
+  Output,
+  EventEmitter,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+} from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { ListItem, IDropdownSettings } from "./multiselect.model";
 import { ListFilterPipe } from "./list-filter.pipe";
@@ -6,7 +15,7 @@ import { ListFilterPipe } from "./list-filter.pipe";
 export const DROPDOWN_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => MultiSelectComponent),
-  multi: true
+  multi: true,
 };
 const noop = () => {};
 
@@ -15,7 +24,7 @@ const noop = () => {};
   templateUrl: "./multi-select.component.html",
   styleUrls: ["./multi-select.component.scss"],
   providers: [DROPDOWN_CONTROL_VALUE_ACCESSOR],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MultiSelectComponent implements ControlValueAccessor {
   public _settings: IDropdownSettings;
@@ -47,7 +56,8 @@ export class MultiSelectComponent implements ControlValueAccessor {
     allowRemoteDataSearch: false,
     property: "property",
     placement: "bottom",
-    displayOrder: "displayOrder"
+    displayOrder: "displayOrder",
+    includeDisabledCount: false,
   };
 
   @Input()
@@ -86,7 +96,7 @@ export class MultiSelectComponent implements ControlValueAccessor {
               text: item[this._settings.textField],
               isDisabled: item[this._settings.disabledField],
               property: item[this._settings.property],
-              displayOrder: item[this._settings.displayOrder]
+              displayOrder: item[this._settings.displayOrder],
             })
       );
     }
@@ -116,7 +126,10 @@ export class MultiSelectComponent implements ControlValueAccessor {
     this.onFilterChange.emit($event);
   }
 
-  constructor(private cdr: ChangeDetectorRef,private listFilterPipe:ListFilterPipe) {}
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private listFilterPipe: ListFilterPipe
+  ) {}
 
   onItemClick($event: any, item: ListItem) {
     if (this.disabled || item.isDisabled) {
@@ -124,7 +137,10 @@ export class MultiSelectComponent implements ControlValueAccessor {
     }
 
     const found = this.isSelected(item);
-    const allowAdd = this._settings.limitSelection === -1 || (this._settings.limitSelection > 0 && this.selectedItems.length < this._settings.limitSelection);
+    const allowAdd =
+      this._settings.limitSelection === -1 ||
+      (this._settings.limitSelection > 0 &&
+        this.selectedItems.length < this._settings.limitSelection);
     if (!found) {
       if (allowAdd) {
         this.addSelected(item);
@@ -132,7 +148,10 @@ export class MultiSelectComponent implements ControlValueAccessor {
     } else {
       this.removeSelected(item);
     }
-    if (this._settings.singleSelection && this._settings.closeDropDownOnSelection) {
+    if (
+      this._settings.singleSelection &&
+      this._settings.closeDropDownOnSelection
+    ) {
       this.closeDropdown();
     }
   }
@@ -151,12 +170,12 @@ export class MultiSelectComponent implements ControlValueAccessor {
                     text: firstItem[this._settings.textField],
                     isDisabled: firstItem[this._settings.disabledField],
                     property: firstItem[this._settings.property],
-                    displayOrder: firstItem[this._settings.displayOrder]
-
-
-                  })
+                    displayOrder: firstItem[this._settings.displayOrder],
+                  }),
             ];
-            this.selectedItems.sort((a, b) => (a.displayOrder > b.displayOrder) ? 1 : -1)
+            this.selectedItems.sort((a, b) =>
+              a.displayOrder > b.displayOrder ? 1 : -1
+            );
           }
         } catch (e) {
           // console.error(e.body.msg);
@@ -170,18 +189,19 @@ export class MultiSelectComponent implements ControlValueAccessor {
                 text: item[this._settings.textField],
                 isDisabled: item[this._settings.disabledField],
                 property: item[this._settings.property],
-                displayOrder: item[this._settings.displayOrder]
-
+                displayOrder: item[this._settings.displayOrder],
               })
         );
         if (this._settings.limitSelection > 0) {
           this.selectedItems = _data.splice(0, this._settings.limitSelection);
-          this.selectedItems.sort((a, b) => (a.displayOrder > b.displayOrder) ? 1 : -1)
-
+          this.selectedItems.sort((a, b) =>
+            a.displayOrder > b.displayOrder ? 1 : -1
+          );
         } else {
           this.selectedItems = _data;
-          this.selectedItems.sort((a, b) => (a.displayOrder > b.displayOrder) ? 1 : -1)
-
+          this.selectedItems.sort((a, b) =>
+            a.displayOrder > b.displayOrder ? 1 : -1
+          );
         }
       }
     } else {
@@ -213,12 +233,14 @@ export class MultiSelectComponent implements ControlValueAccessor {
 
   isSelected(clickedItem: ListItem) {
     let found = false;
-    this.selectedItems.forEach(item => {
+    this.selectedItems.forEach((item) => {
       if (clickedItem.id === item.id) {
         found = true;
       }
     });
-    this.selectedItems.sort((a, b) => (a.displayOrder > b.displayOrder) ? 1 : -1)
+    this.selectedItems.sort((a, b) =>
+      a.displayOrder > b.displayOrder ? 1 : -1
+    );
 
     return found;
   }
@@ -229,13 +251,19 @@ export class MultiSelectComponent implements ControlValueAccessor {
 
   isAllItemsSelected(): boolean {
     // get disabld item count
-    let filteredItems = this.listFilterPipe.transform(this._data,this.filter);
-    const itemDisabledCount = filteredItems.filter(item => item.isDisabled).length;
+    let filteredItems = this.listFilterPipe.transform(this._data, this.filter);
+    const itemDisabledCount = filteredItems.filter((item) => item.isDisabled)
+      .length;
     // take disabled items into consideration when checking
-    if ((!this.data || this.data.length === 0) && this._settings.allowRemoteDataSearch) {
+    if (
+      (!this.data || this.data.length === 0) &&
+      this._settings.allowRemoteDataSearch
+    ) {
       return false;
     }
-    return filteredItems.length === this.selectedItems.length + itemDisabledCount;
+    return (
+      filteredItems.length === this.selectedItems.length + itemDisabledCount
+    );
   }
 
   showButton(): boolean {
@@ -259,23 +287,28 @@ export class MultiSelectComponent implements ControlValueAccessor {
     if (this._settings.singleSelection) {
       this.selectedItems = [];
       this.selectedItems.push(item);
-      this.selectedItems.sort((a, b) => (a.displayOrder > b.displayOrder) ? 1 : -1);
+      this.selectedItems.sort((a, b) =>
+        a.displayOrder > b.displayOrder ? 1 : -1
+      );
     } else {
       this.selectedItems.push(item);
-      this.selectedItems.sort((a, b) => (a.displayOrder > b.displayOrder) ? 1 : -1)
-
+      this.selectedItems.sort((a, b) =>
+        a.displayOrder > b.displayOrder ? 1 : -1
+      );
     }
     this.onChangeCallback(this.emittedValue(this.selectedItems));
     this.onSelect.emit(this.emittedValue(item));
   }
 
   removeSelected(itemSel: ListItem) {
-    this.selectedItems.forEach(item => {
+    this.selectedItems.forEach((item) => {
       if (itemSel.id === item.id) {
         this.selectedItems.splice(this.selectedItems.indexOf(item), 1);
       }
     });
-    this.selectedItems.sort((a, b) => (a.displayOrder > b.displayOrder) ? 1 : -1)
+    this.selectedItems.sort((a, b) =>
+      a.displayOrder > b.displayOrder ? 1 : -1
+    );
 
     this.onChangeCallback(this.emittedValue(this.selectedItems));
     this.onDeSelect.emit(this.emittedValue(itemSel));
@@ -284,7 +317,7 @@ export class MultiSelectComponent implements ControlValueAccessor {
   emittedValue(val: any): any {
     const selected = [];
     if (Array.isArray(val)) {
-      val.map(item => {
+      val.map((item) => {
         selected.push(this.objectify(item));
       });
     } else {
@@ -296,7 +329,7 @@ export class MultiSelectComponent implements ControlValueAccessor {
   }
 
   objectify(val: ListItem) {
-    if (this._sourceDataType === 'object') {
+    if (this._sourceDataType === "object") {
       const obj = {};
       obj[this._settings.idField] = val.id;
       obj[this._settings.textField] = val.text;
@@ -312,7 +345,7 @@ export class MultiSelectComponent implements ControlValueAccessor {
       }
       return obj;
     }
-    if (this._sourceDataType === 'number') {
+    if (this._sourceDataType === "number") {
       return Number(val.id);
     } else {
       return val.text;
@@ -345,9 +378,20 @@ export class MultiSelectComponent implements ControlValueAccessor {
     }
     if (!this.isAllItemsSelected()) {
       // filter out disabled item first before slicing
-      this.selectedItems = this.listFilterPipe.transform(this._data,this.filter).filter(item => !item.isDisabled).slice();
-      this.selectedItems.sort((a, b) => (a.displayOrder > b.displayOrder) ? 1 : -1)
-
+      if (!this._settings.includeDisabledCount) {
+        this.selectedItems = this.listFilterPipe
+          .transform(this._data, this.filter)
+          .filter((item) => !item.isDisabled)
+          .slice();
+      } else {
+        this.selectedItems = this.listFilterPipe.transform(
+          this._data,
+          this.filter
+        );
+      }
+      this.selectedItems.sort((a, b) =>
+        a.displayOrder > b.displayOrder ? 1 : -1
+      );
       this.onSelectAll.emit(this.emittedValue(this.selectedItems));
     } else {
       this.selectedItems = [];

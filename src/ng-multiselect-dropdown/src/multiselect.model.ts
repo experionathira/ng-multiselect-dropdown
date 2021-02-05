@@ -20,6 +20,7 @@ export interface IDropdownSettings {
   property?: string;
   placement?: string;
   displayOrder?: string;
+  includeDisabledCount?: boolean;
 }
 
 export class ListItem {
@@ -30,13 +31,13 @@ export class ListItem {
   displayOrder?: number;
 
   public constructor(source: any) {
-    if (typeof source === 'string' || typeof source === 'number') {
+    if (typeof source === "string" || typeof source === "number") {
       this.id = this.text = source;
       this.isDisabled = false;
-      this.property = '';
+      this.property = "";
       this.displayOrder = 1;
     }
-    if (typeof source === 'object') {
+    if (typeof source === "object") {
       this.id = source.id;
       this.text = source.text;
       this.isDisabled = source.isDisabled;

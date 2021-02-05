@@ -261,6 +261,9 @@ export class MultiSelectComponent implements ControlValueAccessor {
     ) {
       return false;
     }
+    if (this.settings.includeDisabledCount) {
+      return filteredItems.length === this.selectedItems.length;
+    }
     return (
       filteredItems.length === this.selectedItems.length + itemDisabledCount
     );

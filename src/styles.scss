@@ -1,14 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
-.h1, .h2, .h3, h1, h2, h3 {
+$base-color: #55198b;
+$disable-background-color: #eceeef;
+
+.h1,
+.h2,
+.h3,
+h1,
+h2,
+h3 {
   margin-top: 20px;
   margin-bottom: 10px;
 }
 
-.h1, h1 {
+.h1,
+h1 {
   font-size: 36px;
 }
 
-.btn-group-lg > .btn, .btn-lg {
+.btn-group-lg > .btn,
+.btn-lg {
   font-size: 18px;
 }
 
@@ -67,19 +77,27 @@ section {
   margin-right: 15px;
 }
 
-.navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover {
+.navbar-default .navbar-nav > li > a:focus,
+.navbar-default .navbar-nav > li > a:hover {
   color: #333;
   background-color: transparent;
 }
 
-.bd-pageheader, .bs-docs-masthead {
+.bd-pageheader,
+.bs-docs-masthead {
   position: relative;
   padding: 30px 0;
   color: #cdbfe3;
   text-align: center;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, .1);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
   background-color: #6f5499;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#563d7c), to(#6f5499));
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(#563d7c),
+    to(#6f5499)
+  );
   background-image: -webkit-linear-gradient(top, #563d7c 0, #6f5499 100%);
   background-image: -o-linear-gradient(top, #563d7c 0, #6f5499 100%);
   background-image: linear-gradient(to bottom, #563d7c 0, #6f5499 100%);
@@ -118,7 +136,8 @@ section {
 }
 
 @media (min-width: 992px) {
-  .bd-pageheader h1, .bd-pageheader p {
+  .bd-pageheader h1,
+  .bd-pageheader p {
     margin-right: 380px;
   }
 }
@@ -142,7 +161,8 @@ section {
     font-size: 14px;
   }
 
-  .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+  .navbar > .container .navbar-brand,
+  .navbar > .container-fluid .navbar-brand {
     margin-left: -15px;
   }
 }
@@ -164,7 +184,8 @@ section {
 }
 
 @media (max-width: 400px) {
-  code, kbd {
+  code,
+  kbd {
     font-size: 60%;
   }
 }
@@ -209,38 +230,50 @@ section {
 }
 
 .navbar-toggle:focus {
-  outline: 0
+  outline: 0;
 }
 
 .navbar-toggle .icon-bar {
   display: block;
   width: 22px;
   height: 2px;
-  border-radius: 1px
+  border-radius: 1px;
 }
 
 .navbar-toggle .icon-bar + .icon-bar {
-  margin-top: 4px
+  margin-top: 4px;
 }
 
 pre {
-  white-space: pre-wrap;       /* CSS 3 */
-  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
-  white-space: -pre-wrap;      /* Opera 4-6 */
-  white-space: -o-pre-wrap;    /* Opera 7 */
-  word-wrap: break-word;       /* Internet Explorer 5.5+ */
+  white-space: pre-wrap; /* CSS 3 */
+  white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+  white-space: -pre-wrap; /* Opera 4-6 */
+  white-space: -o-pre-wrap; /* Opera 7 */
+  word-wrap: break-word; /* Internet Explorer 5.5+ */
 }
 
-.chart-legend, .bar-legend, .line-legend, .pie-legend, .radar-legend, .polararea-legend, .doughnut-legend {
+.chart-legend,
+.bar-legend,
+.line-legend,
+.pie-legend,
+.radar-legend,
+.polararea-legend,
+.doughnut-legend {
   list-style-type: none;
   margin-top: 5px;
   text-align: center;
   -webkit-padding-start: 0;
   -moz-padding-start: 0;
-  padding-left: 0
+  padding-left: 0;
 }
 
-.chart-legend li, .bar-legend li, .line-legend li, .pie-legend li, .radar-legend li, .polararea-legend li, .doughnut-legend li {
+.chart-legend li,
+.bar-legend li,
+.line-legend li,
+.pie-legend li,
+.radar-legend li,
+.polararea-legend li,
+.doughnut-legend li {
   display: inline-block;
   white-space: nowrap;
   position: relative;
@@ -248,15 +281,223 @@ pre {
   border-radius: 5px;
   padding: 2px 8px 2px 28px;
   font-size: smaller;
-  cursor: default
+  cursor: default;
 }
 
-.chart-legend li span, .bar-legend li span, .line-legend li span, .pie-legend li span, .radar-legend li span, .polararea-legend li span, .doughnut-legend li span {
+.chart-legend li span,
+.bar-legend li span,
+.line-legend li span,
+.pie-legend li span,
+.radar-legend li span,
+.polararea-legend li span,
+.doughnut-legend li span {
   display: block;
   position: absolute;
   left: 0;
   top: 0;
   width: 20px;
   height: 20px;
-  border-radius: 5px
+  border-radius: 5px;
+}
+.multiselect-dropdown {
+  position: relative;
+  width: 100%;
+  font-size: inherit;
+  font-family: inherit;
+  .dropdown-btn {
+    display: inline-block;
+    border: 1px solid #adadad;
+    width: 100%;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-weight: normal;
+    line-height: 1.52857143;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border-radius: 4px;
+    .selected-item {
+      border: 1px solid $base-color;
+      margin-right: 4px;
+      background: $base-color;
+      padding: 0px 5px;
+      color: #fff;
+      border-radius: 2px;
+      .rtl &,
+      [dir="rtl"] & {
+        float: right !important;
+      }
+      float: left;
+      a {
+        text-decoration: none;
+      }
+    }
+    .newly-added-item {
+      border: 1px solid $base-color;
+      margin-right: 4px;
+      background: black;
+      padding: 0px 5px;
+      color: #fff;
+      border-radius: 2px;
+      float: left;
+      .rtl &,
+      [dir="rtl"] & {
+        float: right !important;
+      }
+      a {
+        text-decoration: none;
+      }
+    }
+    .mandatory-item {
+      border: 1px solid $base-color;
+      margin-right: 4px;
+      background: black;
+      padding: 0px 5px;
+      color: #fff;
+      border-radius: 2px;
+      float: left;
+      .rtl &,
+      [dir="rtl"] & {
+        float: right !important;
+      }
+      a {
+        text-decoration: none;
+      }
+    }
+
+    .selected-item:hover {
+      box-shadow: 1px 1px #959595;
+    }
+    .mandatory-item:hover {
+      box-shadow: 1px 1px #959595;
+    }
+
+    .new-subject-item:hover {
+      box-shadow: 1px 1px #959595;
+    }
+    .dropdown-down {
+      display: inline-block;
+      top: 10px;
+      width: 0;
+      height: 0;
+      border-top: 10px solid #adadad;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+    }
+    .dropdown-up {
+      display: inline-block;
+      width: 0;
+      height: 0;
+      border-bottom: 10px solid #adadad;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+    }
+  }
+  .disabled {
+    & > span {
+      background-color: $disable-background-color;
+    }
+  }
+}
+.icon {
+  float: right;
+  padding-right: 4px;
+  .rtl &,
+  [dir="rtl"] & {
+    float: left !important;
+  }
+}
+.dropdown-list {
+  position: absolute;
+  padding-top: 6px;
+  width: 100%;
+  z-index: 9999;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background: #fff;
+  margin-top: 10px;
+  box-shadow: 0px 1px 5px #959595;
+  ul {
+    padding: 0px;
+    list-style: none;
+    overflow: auto;
+    margin: 0px;
+  }
+  li {
+    padding: 6px 10px;
+    cursor: pointer;
+    text-align: left;
+    .rtl &,
+    [dir="rtl"] & {
+      text-align: right !important;
+    }
+  }
+  .filter-textbox {
+    border-bottom: 1px solid #ccc;
+    position: relative;
+    padding: 10px;
+    input {
+      border: 0px;
+      width: 100%;
+      padding: 0px 0px 0px 26px;
+    }
+    input:focus {
+      outline: none;
+    }
+  }
+}
+.multiselect-item-checkbox input[type="checkbox"] + div:before {
+  box-sizing: content-box;
+  content: "";
+  color: $base-color;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  .rtl &,
+  [dir="rtl"] & {
+    left: inherit !important;
+    right: 0 !important;
+  }
+  width: 14px;
+  height: 14px;
+  margin-top: -9px;
+  border: 1px solid #a1aab2;
+  text-align: center;
+  transition: all 0.4s ease;
+  border-radius: 4px;
+}
+
+.multiselect-item-checkbox input[type="checkbox"] + div:after {
+  box-sizing: content-box;
+  content: "";
+  background-color: $base-color;
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  width: 12px;
+  height: 12px;
+  margin-top: -5px;
+  transform: scale(0);
+  transform-origin: 50%;
+  transition: transform 200ms ease-out;
+}
+.multiselect-item-checkbox input[type="checkbox"] + div {
+  position: relative;
+  .rtl &,
+  [dir="rtl"] & {
+    padding-left: 0;
+    padding-right: 2em;
+  }
+  padding-left: 2em;
+  vertical-align: middle;
+  user-select: none;
+  cursor: pointer;
+  margin: 0px;
+  color: #000;
+}
+.placeholder {
+  .rtl &,
+  [dir="rtl"] & {
+    text-align: right;
+  }
 }

@@ -1,13 +1,13 @@
 <div tabindex="=0" (blur)="onTouched()" class="multiselect-dropdown" (clickOutside)="closeDropdown()">
   <div [class.disabled]="disabled">
     <span tabindex="-1" class="dropdown-btn" (click)="toggleDropdown($event)">
-      <span *ngIf="selectedItems.length == 0">{{_placeholder}}</span>
+      <span class="placeholder" *ngIf="selectedItems.length == 0">{{_placeholder}}</span>
       <span *ngFor="let item of selectedItems;trackBy: trackByFn;let k = index" [hidden]="k > _settings.itemsShowLimit-1" [ngClass]="{'newly-added-item' : item.property === 'new-item', 'selected-item' :(item.property !== 'new-item' && item.property !== 'mandatory'), 'mandatory-item' : item.property === 'mandatory', 'disabled-item': item.isDisabled}" >
         {{item.text}}
         <a style="padding-top:2px;padding-left:2px;color:white" (click)="onItemClick($event,item)">x</a>
       </span>
       <span style="padding-right: 6px; display: inline-block; margin-top: 5px; max-width: 50%;" *ngIf="itemShowRemaining()>0">+{{itemShowRemaining()}}</span>
-      <span style="float:right !important;padding-right:4px">
+      <span class="icon">
         <span [ngClass]="_settings.defaultOpen ? 'dropdown-up' : 'dropdown-down'"></span>
       </span>
     </span>
